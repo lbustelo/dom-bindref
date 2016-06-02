@@ -96,10 +96,10 @@ Polymer({
   },
   _stamp: function() {
     if (!this.ref) return;
-    var tpl = Polymer['bind-ref'].getItem(this.ref);
+    var tpl = Polymer['bind-ref'].getItem('#'+this.ref);
     if (!tpl) {
       this._findRefs(this.ownerDocument);
-      tpl = Polymer['bind-ref'].getItem(this.ref);
+      tpl = Polymer['bind-ref'].getItem('#'+this.ref);
     }
 
     if (tpl) {
@@ -162,7 +162,7 @@ Polymer({
     while(doc) {
       var templates=doc.querySelectorAll('template[id]:not([is])');
       for (var i = 0;i<templates.length;i++) {
-        Polymer['bind-ref'].setItem(templates[i].id,templates[i]);
+        Polymer['bind-ref'].setItem('#'+templates[i].id,templates[i]);
       }
       Array.prototype.slice.call(doc.querySelectorAll('link[rel=import]')).forEach(function(el) {
         if (el.import) this._findRefs(el.import);
@@ -273,7 +273,7 @@ Polymer({
 
       Object.observe(host,this._parentChange.bind(this,host));
       // get out of embeded import. There's a better way to do this other than observer.
-      while (host&&Polymer['bind-ref'].getItem(host._template.id)) {
+      while (host&&Polymer['bind-ref'].getItem('#'+host._template.id)) {
         host=host.dataHost;
       }
       if (!host) console.error("Big error");
