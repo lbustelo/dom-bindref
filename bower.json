@@ -21,7 +21,7 @@
     "/demo/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#~1.0.1",
+    "polymer": "Polymer/polymer#>=1.2.4 <1.4.1",
     "object.observe": "~0.2.4"
   },
   "devDependencies": {
